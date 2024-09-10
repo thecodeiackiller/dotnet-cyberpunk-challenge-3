@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_cyberpunk_challenge_3.malware;
@@ -46,7 +47,7 @@ namespace dotnet_cyberpunk_challenge_3
 
         public static async Task challenge1() {
             // FIXME: Mentor note
-            // Need to genericize the Server Connection
+            // Genericize the ServerConnection
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
 
@@ -56,12 +57,7 @@ namespace dotnet_cyberpunk_challenge_3
 
         public static async Task challenge2() {
             // FIXME: Mentor note
-            // Need to adapt the existing ArasakaKuangPrimusMalware and MilitechKuangPrimusMalware to use
-            // the generic ServerConnection
-
-            // TODO: We need to go investigate the existing KuangGradeElevenMalware and start
-            // swapping functions/properties so the wording is generic, i.e. remove any mention
-            // of Arasaka
+            // Make a generic KuangMalwareFamily
 
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
@@ -76,8 +72,18 @@ namespace dotnet_cyberpunk_challenge_3
 
         public static async Task challenge3() {
             // FIXME: Mentor note
-            // Need to create a new class, simply the KuangPrimusMalware.cs, which is genericized
+            // Need to create a new class, simply the MultiKuangPrimusMalware.cs, which is genericized
             // from the existing Arasaka and Militech variants.
+
+            MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList> arasakaIceBreaker = new MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList>();
+            await arasakaIceBreaker.Initialize();
+            List<ArasakaMessageProcessList> arasakaMessageProcessList = await arasakaIceBreaker.GetProcessList();
+            IEnumerable<string> arasakaMemoryMapping = await arasakaIceBreaker.GetProcessMemoryMapping();
+
+            MultiKuangPrimusMalware<MilitechMessageRoot, MilitechICEProcessList> militechIceBreaker = new MultiKuangPrimusMalware<MilitechMessageRoot, MilitechICEProcessList>();
+            await militechIceBreaker.Initialize();
+            List<MilitechICEProcessList> militechICEProcessLists = await militechIceBreaker.GetProcessList();
+            IEnumerable<string> militechMemoryMapping = await militechIceBreaker.GetProcessMemoryMapping();
         }
     }
 }
