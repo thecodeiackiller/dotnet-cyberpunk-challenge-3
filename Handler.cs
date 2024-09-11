@@ -46,6 +46,8 @@ namespace dotnet_cyberpunk_challenge_3
         */
 
         public static async Task challenge1() {
+            // FIXME: Go back and review this
+
             /*
                 TODO: Objective: We already have instantiation of the Arasaka and Militech variants of the
                 malware and the Initialization. Both of the variants have their own Server Connections. This
@@ -63,14 +65,21 @@ namespace dotnet_cyberpunk_challenge_3
 
         public static async Task challenge2() {
             // FIXME: Mentor note
-            // Make a generic `MultiKuangMalwareFamily`
+            // Fix the generic `MultiKuangMalwareFamily`
+            /*
+            TODO: Objective: Okay since we're able to generically use the KuangMalwareFamily base class
+            we're going to make a new base class to use instead. We're going to ABANDON using the `KuangMalwareFamily.cs`
+            in favor of the MULTI Kaung Malware Family base class.
+
+            1. We need to swap the `ArasakaKuangPrimusMalware` and `MilitechKuangPrimusMalware` to use the base class
+            `MultiKuangDaemonFamilyBase`
+            2. FIXME: If you did everything right then it should work!
+
+            */
 
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
 
-            /*
-            TODO: Objective: 
-            */
             List<ArasakaMessageProcessList> arasakaProcessList = await arasakaIceBreaker.GetArasakaProcessList();
             IEnumerable<string> arasakaMemoryMapping = await arasakaIceBreaker.GetProcessMemoryMapping();
 
@@ -85,6 +94,12 @@ namespace dotnet_cyberpunk_challenge_3
             // Need to create a new class, simply the MultiKuangPrimusMalware.cs, which is genericized
             // from the existing Arasaka and Militech variants.
 
+            /*
+                TODO: Objective: We've already setup for you how the `MultiKuangPrimusMalware` is going to be
+                used to generically create an Arasaka ice breaker and a Militech ice breaker from the same class.
+                You'll need to either `F12` into the `MultiKuangPrimusMalware` or simply open it up and make
+                sure to do the TODO tasks listed there at the class definition.
+            */
             MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList> arasakaIceBreaker = new MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList>();
             await arasakaIceBreaker.Initialize();
             List<ArasakaMessageProcessList> arasakaMessageProcessList = await arasakaIceBreaker.GetProcessList();
