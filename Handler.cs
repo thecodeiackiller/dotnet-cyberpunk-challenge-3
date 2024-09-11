@@ -46,8 +46,14 @@ namespace dotnet_cyberpunk_challenge_3
         */
 
         public static async Task challenge1() {
-            // FIXME: Mentor note
-            // Genericize the ServerConnection
+            /*
+                TODO: Objective: We already have instantiation of the Arasaka and Militech variants of the
+                malware and the Initialization. Both of the variants have their own Server Connections. This
+                needs to be genericized, meaning that we need to go create some generic code to handle this.
+                Right now for this challenge we only care about genericizing the ServerConnection because
+                we're gonna do more genericizing later.
+                    1. Use F12 on the arasakaIceBreaker's `Initialize()` method. Find more info there! 
+            */
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
 
@@ -57,10 +63,14 @@ namespace dotnet_cyberpunk_challenge_3
 
         public static async Task challenge2() {
             // FIXME: Mentor note
-            // Make a generic KuangMalwareFamily
+            // Make a generic `MultiKuangMalwareFamily`
 
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
+
+            /*
+            TODO: Objective: 
+            */
             List<ArasakaMessageProcessList> arasakaProcessList = await arasakaIceBreaker.GetArasakaProcessList();
             IEnumerable<string> arasakaMemoryMapping = await arasakaIceBreaker.GetProcessMemoryMapping();
 
