@@ -34,7 +34,7 @@ namespace dotnet_cyberpunk_challenge_3
             await challenge1(); // 10mins
             await challenge2(); // 25mins + 5m talking
             await challenge3(); // 10ish mins
-
+                
             Console.WriteLine("You're done!");
         }
 
@@ -83,12 +83,12 @@ namespace dotnet_cyberpunk_challenge_3
             ArasakaKuangPrimusMalware arasakaIceBreaker = new ArasakaKuangPrimusMalware();
             await arasakaIceBreaker.Initialize();
 
-            List<ArasakaMessageProcessList> arasakaProcessList = await arasakaIceBreaker.GetArasakaProcessList();
+            List<ArasakaMessageProcessList> arasakaProcessList = await arasakaIceBreaker.GetProcessList();
             IEnumerable<string> arasakaMemoryMapping = await arasakaIceBreaker.GetProcessMemoryMapping();
 
             MilitechKuangPrimusMalware militechIceBreaker = new MilitechKuangPrimusMalware();
             await militechIceBreaker.Initialize();
-            List<MilitechICEProcessList> militechProcessLists = await militechIceBreaker.GetMilitechProcessList();
+            List<MilitechICEProcessList> militechProcessLists = await militechIceBreaker.GetProcessList();
             IEnumerable<string> militechMemoryMapping = await militechIceBreaker.GetProcessMemoryMapping();
         }
 
@@ -107,7 +107,7 @@ namespace dotnet_cyberpunk_challenge_3
                 Generics can be quite satisfying to implement but the mental toll of keeping track during implementation
                 can be intense. Get prepared for the homework ;)
             */
-            MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList> arasakaIceBreaker = new MultiKuangPrimusMalware<ArasakaMessageRoot, ArasakaMessageProcessList>();
+            MultiKuangPrimusMalware<BiotechnicaMessageRoot, ArasakaMessageProcessList> arasakaIceBreaker = new MultiKuangPrimusMalware<BiotechnicaMessageRoot, ArasakaMessageProcessList>();
             await arasakaIceBreaker.Initialize();
             List<ArasakaMessageProcessList> arasakaMessageProcessList = await arasakaIceBreaker.GetProcessList();
             IEnumerable<string> arasakaMemoryMapping = await arasakaIceBreaker.GetProcessMemoryMapping();
